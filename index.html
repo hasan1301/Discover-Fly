@@ -75,7 +75,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p id="subtotal">$500</p>
+                        <p id="subtotal">$0</p>
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p id="tax">$50</p>
+                        <p id="tax">$0</p>
                     </div>
                 </div>
                 <hr>
@@ -93,7 +93,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p id="grand-total">$550</p>
+                        <p id="grand-total">$0</p>
                     </div>
                 </div>
             </div>
@@ -124,15 +124,9 @@
                     classNewCount = classCount - 1;
                 }
                 classInput.value = classNewCount;
-                let classTotal = classNewCount * 150;
 
-                document.getElementById('subtotal').innerText = '$' + classTotal;
+                subTotal();
 
-                let tax = Math.round(classTotal * 0.1);
-                document.getElementById('tax').innerText = '$' + tax;
-
-                let grandTotal = classTotal + tax;
-                document.getElementById('grand-total').innerText = '$' + grandTotal;
             }
 
             // economy-class-ticket
@@ -149,29 +143,33 @@
                     classNewCount = classCount - 1;
                 }
                 classInput.value = classNewCount;
-                let classTotal = classNewCount * 100;
 
-                document.getElementById('subtotal').innerText = '$' + classTotal;
+                subTotal();
 
-                let tax = Math.round(classTotal * 0.1);
-                document.getElementById('tax').innerText = '$' + tax;
-
-                let grandTotal = classTotal + tax;
-                document.getElementById('grand-total').innerText = '$' + grandTotal;
             }
 
+            function subTotal() {
+                let classInput = document.getElementById('first-class-ticket');
+                let classCount = parseInt(classInput.value);
 
-            // function calculateTotal() {
-            //     let classTotal = classNewCount * 150 + classNewCount * 100;
-            //     document.getElementById('subtotal').innerText = '$' + totalPrice;
+                let classInput1 = document.getElementById('economy-class-ticket');
+                let classCount1 = parseInt(classInput1.value);
 
-            //     let tax = Math.round(totalPrice * 0.1);
-            //     document.getElementById('tax').innerText = '$' + tax;
+                console.log('classCount1', classCount1);
 
-            //     let grandTotal = totalPrice + tax;
-            //     document.getElementById('grandTotal').innerText = '$' + grandTotal;
-            // }
+                console.log('classCount', classCount);
 
+                let subTotalCount = (classCount1 * 100) + (classCount * 150);
+
+                document.getElementById('subtotal').innerText = '$' + subTotalCount;
+
+                let tax = Math.round(subTotalCount * 0.1);
+                document.getElementById('tax').innerText = '$' + tax;
+
+                let grandTotal = subTotalCount + tax;
+                document.getElementById('grand-total').innerText = '$' + grandTotal;
+
+            }
 
 
             // document.getElementById('increase').addEventListener('click', function () {
